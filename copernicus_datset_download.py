@@ -1,10 +1,13 @@
+# pip install oauth
+# pip install requests requests_oauthlib
+
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
 from datetime import datetime, timedelta
 
 # Your client credentials
-client_id = 'sh-28b6b0ac-78a8-4f74-8a0b-35fc226ae83e'
-client_secret = 'H3PgCemz4ZHyC9qLO0w46hnXTCXuXI5I'
+client_id = ''
+client_secret = ''
 
 # Create a session
 client = BackendApplicationClient(client_id=client_id)
