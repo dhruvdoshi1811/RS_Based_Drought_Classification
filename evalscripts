@@ -1,0 +1,40 @@
+ndvi new
+evalscript = """
+//VERSION=3
+function setup() {
+  return {
+    input: [
+      {
+        bands: ["B04", "B08"],
+      },
+    ],
+    output: {
+      id: "default",
+      bands: 3,
+    },
+  }
+}
+
+function evaluatePixel(sample) {
+  let ndvi = (sample.B08 - sample.B04) / (sample.B08 + sample.B04);
+
+  if (ndvi < -0.941) return [0.47, 0.00, 0.00];       // #770000
+  else if (ndvi < -0.824) return [0.53, 0.00, 0.00];  // #880000
+  else if (ndvi < -0.706) return [0.6, 0.00, 0.00];   // #990000
+  else if (ndvi < -0.588) return [0.67, 0.00, 0.00];  // #AA0000
+  else if (ndvi < -0.471) return [0.73, 0.00, 0.00];  // #BB0000
+  else if (ndvi < -0.353) return [0.8, 0.00, 0.00];   // #CC0000
+  else if (ndvi < -0.235) return [0.87, 0.00, 0.00];  // #DD0000
+  else if (ndvi < -0.118) return [0.93, 0.00, 0.00];  // #EE0000
+  else if (ndvi < 0.0) return [1.0, 0.00, 0.00];      // #FF0000
+  else if (ndvi < 0.118) return [1.0, 0.00, 0.00];    // #FF0000
+  else if (ndvi < 0.235) return [1.0, 0.00, 0.00];    // #FF0000
+  else if (ndvi < 0.353) return [1.0, 0.8, 0.00];     // #FFCC00
+  else if (ndvi < 0.471) return [1.0, 1.0, 0.00];     // #FFFF00
+  else if (ndvi < 0.588) return [0.0, 1.0, 0.00];     // #00FF00
+  else if (ndvi < 0.706) return [0.0, 0.53, 0.00];    // #008800
+  else if (ndvi < 0.824) return [0.0, 0.4, 0.00];     // #006600
+  else return [0.0, 0.4, 0.00];                       // #006600
+}
+
+"""
