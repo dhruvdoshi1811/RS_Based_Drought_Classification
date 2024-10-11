@@ -9,7 +9,6 @@ import os
 import gdown
 import joblib
 
-# Google Drive file ID from the shareable link
 file_id = '1JoopMIFsidHcin5CXUTjmPDTc8ekkuDJ'
 # Destination path for the downloaded model
 output = 'svm_model.pkl'
@@ -19,8 +18,14 @@ if not os.path.exists(output):
     # Download the file
     gdown.download(f'https://drive.google.com/uc?id={file_id}', output, quiet=False)
 
-# Load the model
-model = joblib.load(output)
+# Load the model with error handling
+try:
+    model = joblib.load(output)
+    st.success("Model loaded successfully!")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
+    model = None  # Set model to None if loading fails
+
 
 
 
