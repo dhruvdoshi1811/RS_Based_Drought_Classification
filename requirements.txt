@@ -5,5 +5,4 @@ pillow
 requests-oauthlib
 oauthlib
 gdown
-sklearn
 
