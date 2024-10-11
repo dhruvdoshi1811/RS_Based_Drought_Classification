@@ -1,0 +1,6 @@
+streamlit
+numpy
+joblib
+pillow
+requests-oauthlib
+oauthlib
