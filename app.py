@@ -5,9 +5,25 @@ from PIL import Image
 from datetime import datetime
 from oauthlib.oauth2 import BackendApplicationClient
 from requests_oauthlib import OAuth2Session
+import os
+import gdown
+import joblib
 
-# Load the trained SVM model
-model = joblib.load('svm_model.pkl')
+# Google Drive file ID from the shareable link
+file_id = '1JoopMIFsidHcin5CXUTjmPDTc8ekkuDJ'
+# Destination path for the downloaded model
+output = 'svm_model.pkl'
+
+# Check if the file already exists to avoid redownloading
+if not os.path.exists(output):
+    # Download the file
+    gdown.download(f'https://drive.google.com/uc?id={file_id}', output, quiet=False)
+
+# Load the model
+model = joblib.load(output)
+
+
+
 
 # Function to preprocess the image before making predictions
 def preprocess_image(image):
