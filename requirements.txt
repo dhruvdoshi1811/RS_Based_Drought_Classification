@@ -5,4 +5,4 @@ pillow
 requests-oauthlib
 oauthlib
 gdown
-os
+
